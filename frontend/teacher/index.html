@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartSession – Teacher Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <h1>👩‍🏫 SmartSession – Teacher Dashboard</h1>
+
+  <div class="status-card" id="statusCard">
+    <h2 id="statusText">Connecting...</h2>
+    <p id="statusReason"></p>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="timelineChart"></canvas>
+  </div>
+
+  <p class="note">
+    🔒 Privacy Mode: Only derived states are shown. No video is stored or streamed.
+  </p>
+
+  <script src="teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #020617;
+  color: #e5e7eb;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  padding: 20px;
+}
+
+.status-card {
+  width: 320px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 14px;
+  background: #1e293b;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.status-card.green { background: #065f46; }
+.status-card.yellow { background: #854d0e; }
+.status-card.red { background: #7f1d1d; }
+
+.chart-container {
+  width: 80%;
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+.note {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
