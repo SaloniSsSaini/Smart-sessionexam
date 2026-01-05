@@ -1,47 +1,51 @@
 # SmartSession – AI-Powered Student Engagement & Proctoring System
 
-SmartSession is a real-time, privacy-first education platform that provides teachers
-with live insights into student engagement and integrity during online sessions.
-Instead of invasive surveillance, the system focuses on explainable cognitive signals
-to detect confusion and proctoring risks.
+SmartSession is a real-time, privacy-first web application designed to help teachers
+understand student engagement and integrity during online sessions.
+
+Instead of invasive surveillance, the system focuses on **explainable cognitive signals**
+to detect confusion and basic proctoring risks, providing teachers with actionable insights
+in real time.
 
 ---
 
 ## 🔍 Problem Statement
 
-Online education lacks real-time feedback on:
+In online education, teachers often lack visibility into:
 - When students are confused
-- Whether attention is maintained
-- Basic integrity issues (no face / multiple faces)
+- Whether students are attentive
+- Basic integrity issues such as no face or multiple faces
 
-SmartSession solves this by offering teachers “Super Vision” through
-non-invasive, explainable AI signals.
+SmartSession addresses this gap by offering **live, non-invasive insights**
+without recording or storing any student video.
 
 ---
 
 ## 🧠 Key Features
 
-### Student Portal
+### 🎓 Student Portal
 - Live webcam capture
 - Secure WebSocket streaming
-- No video storage
-- No on-device decision making
+- No video or image storage
+- No decision-making on the client side
 
-### AI Engine (Backend)
+### 🧠 AI Engine (Backend)
 - Face count detection (0 / 1 / multiple)
 - Gaze direction estimation (LEFT / RIGHT / UP / DOWN / CENTER)
 - Custom confusion detection using facial effort signals
-- Temporal intelligence to prevent flickering
+- Temporal intelligence to avoid flickering states
 
-### Teacher Dashboard
-- Live color-coded status
+### 👩‍🏫 Teacher Dashboard
+- Live color-coded student status
 - Real-time engagement timeline
 - Proctor alerts
-- No raw video access (privacy-first)
+- No access to raw video (privacy-by-design)
 
 ---
 
 ## 🏗️ Architecture Overview
+
+
 
 Student Browser
 └── Webcam Frames (Base64)
@@ -51,84 +55,112 @@ Student Browser
 └── WebSocket Broadcast
 └── Teacher Dashboard
 
-yaml
-Copy code
+
+
+---
+
 
 ---
 
 ## 🧩 Confusion Detection Logic (Explainable AI)
 
-Unlike black-box emotion models, confusion is defined as a **cognitive state**
-derived from multiple facial effort signals.
+This system does **not** rely on black-box emotion classification models.
+
+Instead, confusion is treated as a **cognitive state** derived from multiple
+facial effort signals inspired by human observation.
 
 ### Signals Used
 
-| Signal | Meaning | Weight |
-|------|--------|--------|
-| Brow Furrow | Mental effort | 40 |
-| No Smile | Neutral / tension | 20 |
-| Head Tilt | Thinking posture | 10 |
-| Lip Press | Stress | 15 |
-| Eye Squint | Cognitive load | 15 |
-| **Total** | | **100** |
+| Signal        | Meaning            | Weight |
+|---------------|--------------------|--------|
+| Brow Furrow   | Mental effort      | 40     |
+| No Smile      | Neutral / tension  | 20     |
+| Head Tilt     | Thinking posture   | 10     |
+| Lip Press     | Stress indicator   | 15     |
+| Eye Squint    | Cognitive load     | 15     |
+| **Total**     |                    | **100** |
 
-### Rule
+### Classification Rule
+- Confusion Score > **60**
+- State must remain stable for **≥ 2.5 seconds**
 
-- Confusion Score > 60
-- Stable for ≥ 2.5 seconds
-
-➡ Student classified as **CONFUSED**
+➡ Student is classified as **CONFUSED**
 
 ---
 
 ## 🧠 Temporal Intelligence
 
-To avoid flickering:
-- A state must remain stable for a minimum duration
-- Only stable states are broadcast to teachers
+To avoid rapid state flickering:
+- A state must remain consistent for a minimum duration
+- Only stable states are broadcast to the teacher dashboard
 
-This ensures clean, actionable insights.
+This ensures clean, reliable, and actionable insights for instructors.
 
 ---
 
 ## 🔐 Privacy by Design
 
-- Video frames are processed **in-memory only**
+- All video frames are processed **in memory only**
 - No images or videos are stored
-- Teachers receive **only derived states**, never raw feeds
+- Teachers receive **only derived states**, never raw video feeds
+
+Privacy is enforced by system architecture, not by policy alone.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: FastAPI (Python)
-- Communication: WebSockets
-- Computer Vision: OpenCV (Python 3.11 compatible)
-- Charts: Chart.js
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** FastAPI (Python)
+- **Real-time Communication:** WebSockets
+- **Computer Vision:** OpenCV (Python 3.11 compatible)
+- **Visualization:** Chart.js
 
 ---
 
-## ▶️ How to Run
+## ▶️ How to Run the Project
 
-### Backend
+### 1️⃣ Backend
 ```bash
 cd backend
 uvicorn server:app --reload
-Student Portal
-Open:
 
-bash
-Copy code
-frontend/student/index.html
-Teacher Dashboard
-Open:
 
-bash
-Copy code
-frontend/teacher/index.html
+
+Frontend
+
+Run a simple HTTP server:
+cd frontend
+python -m http.server 5500
+
+
+Open in Browser
+
+Student Portal:
+http://127.0.0.1:5500/student/index.html
+
+Teacher Dashboard:
+http://127.0.0.1:5500/teacher/index.html
+
+🎥 Demo / Integrity Video
+
+A short screen-recorded demo explaining:
+
+End-to-end working of the system
+
+Live confusion detection
+
+Teacher dashboard updates
+
+Privacy guarantees
+
+📹 Video Link:
+https://drive.google.com/file/d/1s7fwrmSElJ4vWUsPS73PYQLN3bi3wbSR/view
+
+
 🚀 Future Improvements
-Multi-student sessions
+
+Multi-student session support
 
 Landmark-based gaze tracking
 
@@ -137,11 +169,6 @@ Adaptive confusion thresholds
 Teacher feedback loop
 
 🎯 Final Note
-This system prioritizes teacher empowerment, student privacy, and
-explainable intelligence over surveillance.
 
-yaml
-Copy code
-
----
-
+SmartSession prioritizes teacher empowerment, student privacy, and
+explainable intelligence over surveillance-heavy proctoring systems.
